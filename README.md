@@ -1,5 +1,7 @@
 # Web Scraper with BeautifulSoup
 
+## Internship Task 2 - Scraping Static Data - BeautifulSoup
+
 ## 📌 Project Description
 This Python script scrapes quotes, their authors, and detail page links from [quotes.toscrape.com](http://quotes.toscrape.com). The data is saved into a CSV file for easy access and analysis.
 
