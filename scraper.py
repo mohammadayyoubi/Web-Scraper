@@ -6,24 +6,32 @@ import csv
 url = "http://quotes.toscrape.com"
 response = requests.get(url)
 
-# Step 2: Parse HTML content
-soup = BeautifulSoup(response.text, 'html.parser')
 
-# Step 3: Extract data -- 7a tjib kl quotes div
-quotes = soup.find_all('div', class_='quote')
+try:
+    # Step 2: Parse HTML content
+    soup = BeautifulSoup(response.text, 'html.parser')
 
-# Prepare CSV
-with open('output.csv', mode='w', newline='', encoding='utf-8') as file:
-    writer = csv.writer(file)
-    writer.writerow(['Quote', 'Author', 'Link'])
+    # Step 3: Extract data -- 7a tjib kl quotes div
+    quotes = soup.find_all('div', class_='quote')# A list of BeautifulSoup objects, each representing a quote block on the page.
 
-    #loop to path 3la each quote extacted
-    for quote in quotes:
-        text = quote.find('span', class_='text').get_text(strip=True)  # 7a tfut 3la div qoute b3den el span yle 3ndo class text (howe el qoute text)
-        author = quote.find('small', class_='author').get_text(strip=True) # same, enter small element that have class author
-        link = quote.find('a')['href'] # 7a tfut 3la a element w t7ot el href link
-        full_link = url + link #complete path of link of quote
-        # Step 4: Write to CSV
-        writer.writerow([text, author, full_link])
+    # Prepare CSV
+    with open('output.csv', mode='w', newline='', encoding='utf-8') as file:
+        writer = csv.writer(file)
+        writer.writerow(['Quote', 'Author', 'Link'])
 
-print("Scraping complete. Data saved to output.csv.")
+        #loop to path 3la each quote extacted
+        for quote in quotes:
+            try:
+                text = quote.find('span', class_='text').get_text(strip=True)  # 7a tfut 3la div qoute b3den el span yle 3ndo class text (howe el qoute text)
+                author = quote.find('small', class_='author').get_text(strip=True) # same, enter small tag that have class author
+                link = quote.find('a')['href'] # 7a tfut 3la a element w t7ot el href link
+                full_link = url + link #complete path of link of quote
+                # Step 4: Write to CSV
+                writer.writerow([text, author, full_link])
+            except AttributeError as e:
+                    print(f"Skipping a quote due to missing element: {e}")
+
+    print("Scraping complete. Data saved to output.csv.")
+
+except Exception as e:
+    print(f"An error occurred during scraping or file writing: {e}")
