@@ -36,22 +36,4 @@ The website was well-suited and posed minimal issues.
 Quote	Author	Link
 “The world as we have created it...”	Albert Einstein	http://quotes.toscrape.com/author/Albert-Einstein
 
-🔗 Submission
-✅ Uploaded to GitHub: [Your GitHub Repo Link Here]
 
-yaml
-Copy
-Edit
-
----
-
-### 📤 **Publishing to GitHub**
-
-1. Initialize Git:
-```bash
-git init
-git add .
-git commit -m "Initial commit for BeautifulSoup web scraping task"
-git branch -M main
-git remote add origin https://github.com/YOUR_USERNAME/web-scraping-task
-git push -u origin main
