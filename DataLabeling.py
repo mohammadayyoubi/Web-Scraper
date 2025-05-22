@@ -6,7 +6,7 @@ df = pd.read_csv('output.csv')
 # Add an empty 'Label' column
 df['Label'] = ''
 
-# Manual labeling (you can also do this in Excel or Google Sheets if easier)
+# Manual labeling 
 for i, row in df.iterrows():
     print(f"\nQuote {i+1}:\n{row['Quote']}")
     label = input("Label (positive/negative): ").strip().lower()
